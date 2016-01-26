@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Posting Data</h3>
+
+<p>jQuery AJAX In ASP.NET </p>
+
+<div id="loading"></div>
+<input type="submit" id="btnSubmit" value="Add Student" />
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $('#btnSubmit').click(function (event) {
+                event.preventDefault();
+                //var Student = { ID: '10001', Name: 'Shashangka', Age: 31 };
+                var ID = ["Shashangka", "Shekhar", "Mandal"];
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/JqAJAX_Array",
+                    data: { values: ID },
+                    datatype: "html",
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (data) {
+                        alert(data.msg);
+                    },
+                    error: function () {
+                        alert("Error occured!!")
+                    }
+                });
+            });
+        });
+    });
+</script>
